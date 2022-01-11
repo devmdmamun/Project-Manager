@@ -6,6 +6,7 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Login from "./pages/login/Login";
 import Signup from "./pages/signup/Signup";
 import Create from "./pages/create/Create";
+import Project from "./pages/project/Project";
 
 //styles
 import "./App.css";
@@ -20,6 +21,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/create" element={<Create />} />
+            <Route path="/projects/:id" element={<Project />} />
           </Routes>
         </div>
       </BrowserRouter>
