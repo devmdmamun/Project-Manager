@@ -8,7 +8,7 @@ export default function Signup() {
   const [displayName, setDisplayName] = useState("");
   const [thumbnail, setThumbnail] = useState(null);
   const [thumbnailError, setThumbnailError] = useState(null);
-  const { signup, ispending, error } = useSignup();
+  const { signup, isPending, error } = useSignup();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -72,8 +72,8 @@ export default function Signup() {
           value={password}
         />
       </label>
-      {!ispending && <button className="btn">Sign up</button>}
-      {ispending && (
+      {!isPending && <button className="btn">Sign up</button>}
+      {isPending && (
         <button disabled className="btn">
           Loading
         </button>
