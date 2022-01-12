@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { useAuthContext } from "./hooks/useAuthContext";
 
 //components
@@ -15,20 +15,60 @@ import Sidebar from "./components/Sidebar";
 import "./App.css";
 
 function App() {
-  const { authIsReady } = useAuthContext();
+  const { authIsReady, user } = useAuthContext();
   return (
     <div className="App">
       {authIsReady && (
         <BrowserRouter>
-          <Sidebar />
+          {user && <Sidebar />}
           <div className="container">
             <Navbar />
             <Routes>
-              <Route path="/" element={<Dashboard />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/signup" element={<Signup />} />
-              <Route path="/create" element={<Create />} />
-              <Route path="/projects/:id" element={<Project />} />
+              <Route
+                path="/"
+                element={
+                  <>
+                    {user && <Dashboard />}
+                    {!user && <Navigate to="/login" />}
+                  </>
+                }
+              />
+              <Route
+                path="/create"
+                element={
+                  <>
+                    {user && <Create />}
+                    {!user && <Navigate to="/login" />}
+                  </>
+                }
+              />
+              <Route
+                path="/projects/:id"
+                element={
+                  <>
+                    {user && <Project />}
+                    {!user && <Navigate to="/login" />}
+                  </>
+                }
+              />
+              <Route
+                path="/login"
+                element={
+                  <>
+                    {!user && <Login />}
+                    {user && <Navigate to="/" />}
+                  </>
+                }
+              />
+              <Route
+                path="/signup"
+                element={
+                  <>
+                    {!user && <Signup />}
+                    {user && <Navigate to="/" />}
+                  </>
+                }
+              />
             </Routes>
           </div>
         </BrowserRouter>
