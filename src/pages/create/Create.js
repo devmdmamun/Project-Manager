@@ -1,5 +1,13 @@
 import { useState } from "react";
+import Select from "react-select";
 import "./Create.css";
+
+const categories = [
+  { value: "development", label: "Development" },
+  { value: "design", label: "Design" },
+  { value: "sales", label: "Sales" },
+  { value: "marketing", label: "Marketing" },
+];
 
 export default function Create() {
   // form field values
@@ -11,7 +19,7 @@ export default function Create() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name, details, dueDate);
+    console.log(name, details, dueDate, category.value);
   };
 
   return (
@@ -48,7 +56,10 @@ export default function Create() {
 
         <label>
           <span>Project category:</span>
-          {/* catagory select here */}
+          <Select
+            onChange={(option) => setCategory(option)}
+            options={categories}
+          />
         </label>
         <label>
           <span>Assign to:</span>
