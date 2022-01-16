@@ -3,20 +3,20 @@ import { projectFirestore } from "../firebase/config";
 
 export const useDocument = (collection, id) => {
   const [document, setDocument] = useState(null);
-  const [error, seterror] = useState(null);
+  const [error, setError] = useState(null);
 
+  // realtime data for document
   useEffect(() => {
-    const ref = projectFirestore(collection).doc(id);
+    const ref = projectFirestore.collection(collection).doc(id);
 
-    // realtime data for document
     const unsub = ref.onSnapshot(
       (snapshot) => {
         setDocument({ ...snapshot.data(), id: snapshot.id });
-        seterror(null);
+        setError(null);
       },
       (err) => {
         console.log(err);
-        seterror(err.message);
+        setError(err.message);
       }
     );
 
