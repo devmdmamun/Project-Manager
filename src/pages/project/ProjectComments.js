@@ -29,6 +29,19 @@ export default function ProjectComments({ project }) {
   return (
     <div className="project-comments">
       <h4>Project comment</h4>
+      <form onSubmit={handleSubmit} className="add-comment">
+        <label>
+          <textarea
+            placeholder="Add comment"
+            required
+            onChange={(e) => {
+              setNewComment(e.target.value);
+            }}
+            value={newComment}
+          ></textarea>
+        </label>
+        <button className="btn">Add Comment</button>
+      </form>
 
       <ul>
         {project.comments.length > 0 &&
@@ -47,20 +60,6 @@ export default function ProjectComments({ project }) {
             </li>
           ))}
       </ul>
-
-      <form onSubmit={handleSubmit} className="add-comment">
-        <label>
-          <textarea
-            placeholder="Add comment"
-            required
-            onChange={(e) => {
-              setNewComment(e.target.value);
-            }}
-            value={newComment}
-          ></textarea>
-        </label>
-        <button className="btn">Add Comment</button>
-      </form>
     </div>
   );
 }
