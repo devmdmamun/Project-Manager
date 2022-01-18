@@ -1,3 +1,7 @@
+.create-container {
+  width: 100%;
+  overflow-x: auto;
+}
 .create-form {
   max-width: 600px;
   margin: 20px 0 70px 0;
